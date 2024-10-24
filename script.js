@@ -3,7 +3,7 @@ document.getElementById("studyForm").addEventListener("submit", async function(e
     const answer = document.getElementById("answer").value;
 
     // Send the answer to the server
-    const response = await fetch('/evaluate', {
+    const response = await fetch('https://ai-study-buddy-ten.vercel.app/api/evaluate', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
