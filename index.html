@@ -7,17 +7,46 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="container">
-        <h1>AI Study Buddy</h1>
-        <form id="studyForm">
-            <label for="answer">Enter your answer:</label>
-            <textarea id="answer" rows="5"></textarea>
-            <button type="submit">Submit Answer</button>
-        </form>
-        <div id="feedback"></div>
-        <div id="tips"></div>
-        <div id="progress"></div>
+    <h1>AI Study Buddy</h1>
+
+    <!-- Step 1: Choose Subject -->
+    <div id="subject-section">
+        <h2>Select Subject</h2>
+        <select id="subject">
+            <option value="">--Select Subject--</option>
+            <option value="math">Math</option>
+            <option value="science">Science</option>
+            <option value="history">History</option>
+        </select>
+        <button id="nextToTopic">Next</button>
     </div>
+
+    <!-- Step 2: Choose Topic -->
+    <div id="topic-section" style="display: none;">
+        <h2>Select Topic</h2>
+        <select id="topic">
+            <option value="">--Select Topic--</option>
+            <option value="algebra">Algebra</option>
+            <option value="calculus">Calculus</option>
+            <option value="biology">Biology</option>
+            <option value="chemistry">Chemistry</option>
+            <option value="ww2">World War II</option>
+            <option value="renaissance">Renaissance</option>
+        </select>
+        <button id="nextToQuestion">Next</button>
+    </div>
+
+    <!-- Step 3: Ask Question and Submit Answer -->
+    <div id="question-section" style="display: none;">
+        <h2>Submit Your Answer</h2>
+        <textarea id="answer" placeholder="Type your answer here..." required></textarea>
+        <button type="submit" id="submitAnswer">Submit Answer</button>
+    </div>
+
+    <!-- Feedback Sections -->
+    <div id="feedback"></div>
+    <div id="tips"></div>
+    <div id="progress"></div>
 
     <script src="script.js"></script>
 </body>
