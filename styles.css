@@ -5,17 +5,11 @@ body {
     background-color: #f4f4f4;
 }
 
-h1 {
-    text-align: center;
+h1, h2 {
     color: #333;
 }
 
-h2 {
-    margin-top: 20px;
-    color: #444;
-}
-
-#subject-section, #topic-section, #question-section {
+#subject-section, #topic-section, #questions-section {
     margin: 20px 0;
     padding: 20px;
     background: white;
@@ -23,12 +17,18 @@ h2 {
     border-radius: 8px;
 }
 
-select, textarea, button {
+select, button {
     display: block;
     margin-top: 10px;
-    width: 100%;
     padding: 10px;
     font-size: 1rem;
+    width: 100%;
+}
+
+textarea {
+    margin-top: 10px;
+    padding: 10px;
+    width: 100%;
 }
 
 button {
@@ -43,7 +43,7 @@ button:hover {
     background-color: #218838;
 }
 
-#feedback, #tips, #progress {
+#feedback, #flowchart-section {
     margin-top: 20px;
     padding: 15px;
     background-color: #e9f7f7;
