@@ -28,7 +28,7 @@ document.getElementById("submitAnswer").addEventListener("click", async function
 
     try {
         // Fetch the response from your Vercel API
-        const response = await fetch('https://your-vercel-project-url/api/evaluate', {
+        const response = await fetch('https://ai-study-buddy-ten.vercel.app/api/evaluate', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
