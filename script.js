@@ -10,10 +10,17 @@ document.getElementById("studyForm").addEventListener("submit", async function(e
         },
         body: JSON.stringify({ answer: answer })
     });
+    if (!response.ok) {
+            throw new Error('Network response was not ok ' + response.statusText);
+        }
     const data = await response.json();
 
     // Display feedback and tips
     document.getElementById("feedback").innerHTML = "<strong>Feedback:</strong> " + data.feedback;
     document.getElementById("tips").innerHTML = "<strong>Study Tips:</strong> " + data.tips;
     document.getElementById("progress").innerHTML = "<strong>Your Progress:</strong> " + data.progress;
+ } catch (error) {
+        console.error('There has been a problem with your fetch operation:', error);
+        document.getElementById("feedback").innerHTML = "Error: " + error.message;
+    }
 });
