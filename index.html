@@ -5,8 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AI Study Buddy</title>
     <link rel="stylesheet" href="styles.css">
-    <!-- You can also use a charting library like Chart.js -->
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
     <h1>AI Study Buddy</h1>
@@ -19,9 +17,6 @@
             <option value="math">Math</option>
             <option value="science">Science</option>
             <option value="history">History</option>
-            <option value="literature">Literature</option>
-            <option value="computer_science">Computer Science</option>
-            <!-- Add more subjects as needed -->
         </select>
         <button id="nextToTopic">Next</button>
     </div>
@@ -31,45 +26,27 @@
         <h2>Select Topic</h2>
         <select id="topic">
             <option value="">--Select Topic--</option>
-            <!-- Math Topics -->
-            <option value="algebra" class="math">Algebra</option>
-            <option value="calculus" class="math">Calculus</option>
-            <option value="geometry" class="math">Geometry</option>
-
-            <!-- Science Topics -->
-            <option value="biology" class="science">Biology</option>
-            <option value="chemistry" class="science">Chemistry</option>
-            <option value="physics" class="science">Physics</option>
-
-            <!-- History Topics -->
-            <option value="ww2" class="history">World War II</option>
-            <option value="renaissance" class="history">Renaissance</option>
-            
-            <!-- Literature Topics -->
-            <option value="shakespeare" class="literature">Shakespeare</option>
-            <option value="poetry" class="literature">Poetry</option>
-            
-            <!-- Computer Science Topics -->
-            <option value="algorithms" class="computer_science">Algorithms</option>
-            <option value="data_structures" class="computer_science">Data Structures</option>
-            <option value="machine_learning" class="computer_science">Machine Learning</option>
+            <option value="algebra">Algebra</option>
+            <option value="calculus">Calculus</option>
+            <option value="biology">Biology</option>
+            <option value="chemistry">Chemistry</option>
+            <option value="ww2">World War II</option>
+            <option value="renaissance">Renaissance</option>
         </select>
-        <button id="nextToQuestions">Next</button>
+        <button id="nextToQuestion">Next</button>
     </div>
 
-    <!-- Step 3: Ask Series of Related Questions -->
-    <div id="questions-section" style="display: none;">
-        <h2>Answer Related Questions</h2>
-        <div id="questions"></div>
-        <button id="submitAnswers">Submit Answers</button>
+    <!-- Step 3: Ask Question and Submit Answer -->
+    <div id="question-section" style="display: none;">
+        <h2>Submit Your Answer</h2>
+        <textarea id="answer" placeholder="Type your answer here..." required></textarea>
+        <button type="submit" id="submitAnswer">Submit Answer</button>
     </div>
 
     <!-- Feedback Sections -->
     <div id="feedback"></div>
-    <div id="flowchart-section" style="display: none;">
-        <h2>Your Performance Flowchart</h2>
-        <canvas id="performanceChart"></canvas>
-    </div>
+    <div id="tips"></div>
+    <div id="progress"></div>
 
     <script src="script.js"></script>
 </body>
