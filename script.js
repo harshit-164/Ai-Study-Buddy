@@ -21,7 +21,7 @@ document.getElementById("nextToQuestions").addEventListener("click", function() 
 
 function loadQuestions(topic) {
     const questionsContainer = document.getElementById("questions");
-    questionsContainer.innerHTML = "";
+    questionsContainer.innerHTML = ""; // Clear previous questions
 
     // Example questions for topics (you can customize these)
     const questions = {
@@ -36,6 +36,7 @@ function loadQuestions(topic) {
         // Add more topic-based questions here
     };
 
+    // Generate questions based on the topic
     if (questions[topic]) {
         questions[topic].forEach((question, index) => {
             const questionDiv = document.createElement("div");
@@ -53,10 +54,19 @@ document.getElementById("submitAnswers").addEventListener("click", async functio
 
     const answers = [];
     document.querySelectorAll('textarea[id^="question_"]').forEach(textarea => {
-        answers.push(textarea.value);
+        answers.push(textarea.value.trim()); // Capture answers, remove extra spaces
     });
 
-    // Send answers to API and get feedback
+    // Check if at least one answer is filled
+    if (answers.length === 0 || answers.every(answer => answer === "")) {
+        alert("Please provide answers to the questions.");
+        return;
+    }
+
+    // Log answers for debugging
+    console.log("Collected Answers: ", answers);
+
+    // Send answers to backend API and get feedback
     try {
         const response = await fetch('https://your-vercel-project-url/api/evaluate', {
             method: 'POST',
@@ -67,34 +77,36 @@ document.getElementById("submitAnswers").addEventListener("click", async functio
         });
 
         if (!response.ok) {
-            throw new Error('Network response was not ok ' + response.statusText);
+            throw new Error(`Network response was not ok: ${response.statusText}`);
         }
 
         const data = await response.json();
 
-        // Display feedback
-        document.getElementById("feedback").innerHTML = "<strong>Feedback:</strong> " + data.feedback;
+        // Show feedback
+        document.getElementById("feedback").innerHTML = `<strong>Feedback:</strong> ${data.feedback}`;
+        
+        // Show flowchart
         document.getElementById("flowchart-section").style.display = "block";
-
-        // Generate the flowchart
         createFlowchart(data.stats);
 
     } catch (error) {
-        console.error('There has been a problem with your fetch operation:', error);
-        document.getElementById("feedback").innerHTML = "Error: " + error.message;
+        console.error("Error submitting answers:", error);
+        document.getElementById("feedback").innerHTML = "Error submitting answers. Please try again.";
     }
 });
 
 function createFlowchart(stats) {
     const ctx = document.getElementById('performanceChart').getContext('2d');
+
+    // Create a pie chart showing user's performance
     new Chart(ctx, {
         type: 'pie',
         data: {
             labels: ['Correct', 'Incorrect', 'Partially Correct'],
             datasets: [{
                 label: 'Your Performance',
-                data: [stats.correct, stats.incorrect, stats.partial],
-                backgroundColor: ['#28a745', '#dc3545', '#ffc107'],
+                data: [stats.correct, stats.incorrect, stats.partial], // Update this according to API response
+                backgroundColor: ['#28a745', '#dc3545', '#ffc107'], // Colors for each category
                 borderColor: ['#28a745', '#dc3545', '#ffc107'],
                 borderWidth: 1
             }]
